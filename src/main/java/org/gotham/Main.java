@@ -1,5 +1,7 @@
 package org.gotham;
 
+import org.legacy.gotham.LegacySituationAdapter;
+
 import java.util.Set;
 
 import static org.gotham.BatGadget.BATARANG;
@@ -13,10 +15,8 @@ public class Main {
         BatmanBelt batmanBelt = BatmanBelt.builder()
                 .batGadgets(Set.of(BatGadget.values()))
                 .build();
-        batmanBelt.useAppropriateGadget(Situation.COVER);
-        batmanBelt.useAppropriateGadget(Situation.ACCESS_HIGH_AREAS);
-        batmanBelt.useAppropriateGadget(Situation.STUN);
-        batmanBelt.useAppropriateGadget(Situation.HACK);
+        final Situation situation = LegacySituationAdapter.getInstance().detectSituation();
+        batmanBelt.useAppropriateGadget(situation);
     }
 
 }
